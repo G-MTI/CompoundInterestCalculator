@@ -73,13 +73,13 @@ document.getElementById('calcBtn').addEventListener('click', () => {
 
     // Tabella annuale
     const balances = yearlyBalances(P, r, n, t, PMT, contribAtStart);
-    const yearsLabels = balances.map((_, i) => `Year ${i+1}`);
+    const yearsLabel = balances.map((_, i) => `Year ${i+1}`);
     const tableWrap = document.getElementById('tableWrap');
     
     let html = `<table><thead><tr><th>Period</th><th>Balance</th></tr></thead><tbody>`;
 
     balances.forEach((b, i) => {
-        html += `<tr><td style="text-align:left">Year ${i+1}</td><td>${fmtMoney(b)}</td></tr>`;
+        html += `<tr><td style="text-align:left">Year ${i+1} =</td><td>${fmtMoney(b)}</td></tr>`;
     });
 
     html += `</tbody></table>`;
@@ -87,5 +87,33 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     tableWrap.innerHTML = html;
 
     // Grafico (Chart.js)
-    
+    const canvas = document.getElementById('chart');
+    canvas.style.display = balances.length ? 'block' : 'none';
+
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    if (balances.length) {
+        chartInstance = new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: yearsLabel,
+                datasets: [{
+                    label: 'Balance',
+                    data: balances,
+                    fill: false,
+                    tension: 0.25,
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: false, ticks: { callback: (v) => v } }
+                },
+                plugins: { 
+                    legend: { display: false } 
+                },
+            }
+        });
+    }
 });

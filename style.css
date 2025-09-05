@@ -1,6 +1,9 @@
 :root{
     --bg: #a8ffe5;
     --hero: #dcfdf3;
+    --hover: #75c1ff;
+    --main: #008cff;
+    --border: #e5e7eb;
 }
 
 body{
@@ -47,10 +50,15 @@ body{
 a{
     text-decoration: none;
     color: inherit;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: var(--main);
+    font-size: 16px;
 }
 
 a:hover{
-    color: #4CAF50;
+    background-color: var(--hover);
 }
 
 .controlsRow{
@@ -71,17 +79,22 @@ a:hover{
 
 input{
 
-    padding:8px 10px; border-radius:8px; border:1px solid #e5e7eb; 
+    padding:8px 10px; 
+    border-radius:8px; 
+    border:1px solid var(--border); 
 }
 
 select{
-    padding:8px 10px; border-radius:8px; border:1px solid #e5e7eb; min-width: 200px; background-color: white;
+    padding:8px 10px; 
+    border-radius:8px; 
+    border:1px solid var(--border); 
+    min-width: 200px; 
+    background-color: white;
 }
 
 #calcBtn {
     min-width: 190px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--main);
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -90,4 +103,13 @@ select{
     cursor: pointer;
     border-radius: 4px;
     align-self: center;
+}
+
+#calcBtn:hover {
+    background-color: var(--hover);
+}
+
+.result{
+    margin-top: 24px;
+    text-align:left
 }
