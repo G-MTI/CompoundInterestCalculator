@@ -7,7 +7,7 @@ I created this calculator myself. First, I designed the interface using simple H
 
 ![equazione](https://latex.codecogs.com/svg.latex?A%3DP%281%2Br%2Fn%29%5E%7Bnt%7D%2BPMT%5Ccdot%5Cfrac%7B%281%2Br%2Fn%29%5E%7Bnt%7D-1%7D%7Br%2Fn%7D)
 
-
+I've used ChatGPT to understend the math behind.
 To make the project more engaging, I integrated a line chart using Chart.js (loaded via CDN).
 This was one of the first times I built something with Chart.js.
 
