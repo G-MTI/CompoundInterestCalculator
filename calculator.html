@@ -7,19 +7,55 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="card">
+        <div class="hero-section">
             <h2>Compound Interest Calculator</h2>
             <p class="small">Enter the values and click <strong>Calculate</strong>.</p>
 
-            <div class="controls row">
-
-                <button id="calcBtn">Calculate</button>
-
-                <div>
-                    <label>Initial principal</label><br>
-                    <input id="principal" type="number" step="any" />
+            <div class="controlsRow">
+                <div class="input">
+                    <p>Initial principal</p>
+                    <input id="principal" type="number" step="any" value="500"/>
                 </div>
-                
+
+                <div class="input">
+                    <p>Compounding frequency</p>
+                    <select id="compFreq">
+                        <option value="1">annually (1)</option>
+                        <option value="2">semi-annually (2)</option>
+                        <option value="4">quarterly (4)</option>
+                        <option value="12" selected>monthly (12)</option>
+                        <option value="365">daily (365)</option>
+                    </select>
+                </div>
+
+                <div class="input">
+                    <p>Rate of interest (in %)</p>
+                    <input id="rate" type="number" step="any" value="5"/>
+                </div>
+
+                <div class="input">
+                    <p>Investment duration (years)</p>
+                    <input id="duration" type="number" step="any" value="10"/>
+                </div>
+            </div>
+
+            <div class="controlsRow">
+                <div class="input">
+                    <p>Periodic contribution</p>
+                    <input id="contribution" type="number" step="any" value="0"/>
+                </div>
+
+
+                <div class="input">
+                    <p>Payment timing</p>
+                    <div>
+                        <label ><input type="radio" name="contribTiming" value="end" checked > period end </label>
+                        <label><input type="radio" name="contribTiming" value="start"> period start </label>
+                    </div>
+                </div>
+
+                <div class="input"></div>
+                <button id="calcBtn">Calculate</button>
             </div>
 
             <div id="result" class="result"></div>
