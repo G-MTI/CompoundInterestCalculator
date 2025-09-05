@@ -41,7 +41,7 @@
 
             <div class="controlsRow">
                 <div class="input">
-                    <p>Periodic contribution</p>
+                    <p>Periodic contribution (PMT)</p>
                     <input id="contribution" type="number" step="any" value="0"/>
                 </div>
 
@@ -60,9 +60,11 @@
 
             <div id="result" class="result"></div>
 
-            <canvas id="chart"></canvas>
+            <canvas id="chart" width="800" height="300" style="display:none;"></canvas>
 
+            <div id="tableWrap"></div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
         <script src="calculate.js"></script>
     </body>
 </html>
