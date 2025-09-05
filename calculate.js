@@ -29,3 +29,63 @@ function calcFinal(P, r, n, t, PMT=0, contribAtStart=false) {
     if (contribAtStart) contribTerm *= (1 + RoverN); // se i contributi sono all'inizio del periodo, si capitalizzano per un periodo in più
     return P * factor + contribTerm;
 }
+
+    // trovo il saldo anno per anno 
+function yearlyBalances(P, r, n, t, PMT=0, contribAtStart=false) {
+    const totalPeriods = Math.round(n * t); //
+    let balances = [];
+    let balance = P;
+    let periodCount = 0;
+    for (let i = 1; i <= totalPeriods; i++) {
+        if (contribAtStart && PMT) balance += PMT;
+        balance *= (1 + r / n);
+        if (!contribAtStart && PMT) balance += PMT;
+        periodCount++;
+        // ogni n periodi push il saldo di fine anno (0 se ultimo periodo)
+        if (periodCount === n || i === totalPeriods) {
+          balances.push(balance);
+          periodCount = 0;
+        }
+    }
+    return balances;
+}
+
+let chartInstance = null;
+document.getElementById('calcBtn').addEventListener('click', () => {
+
+    const P = parseFloat(document.getElementById('principal').value) || 0;
+    const ratePercent = parseFloat(document.getElementById('rate').value) || 0;
+    const r = ratePercent / 100;
+    const n = parseInt(document.getElementById('compFreq').value, 10) || 1;
+    const t = parseFloat(document.getElementById('duration').value) || 0;
+    const PMT = parseFloat(document.getElementById('contribution').value) || 0;
+    const contribAtStart = document.querySelector('input[name="contribTiming"]:checked').value === 'start';
+    const finalAmount = calcFinal(P, r, n, t, PMT, contribAtStart);
+    const totalContributions = P + PMT * Math.round(n * t);
+    const interestEarned = finalAmount - totalContributions;
+    const resultDiv = document.getElementById('result');
+
+    resultDiv.innerHTML = `
+      <div><strong>Final balance:</strong> ${fmtMoney(finalAmount)}</div>
+      <div class="small">Total contributions: ${fmtMoney(totalContributions)}</div>
+      <div class="small">Interest earned: ${fmtMoney(interestEarned)}</div>
+    `;
+
+    // Tabella annuale
+    const balances = yearlyBalances(P, r, n, t, PMT, contribAtStart);
+    const yearsLabels = balances.map((_, i) => `Year ${i+1}`);
+    const tableWrap = document.getElementById('tableWrap');
+    
+    let html = `<table><thead><tr><th>Period</th><th>Balance</th></tr></thead><tbody>`;
+
+    balances.forEach((b, i) => {
+        html += `<tr><td style="text-align:left">Year ${i+1}</td><td>${fmtMoney(b)}</td></tr>`;
+    });
+
+    html += `</tbody></table>`;
+
+    tableWrap.innerHTML = html;
+
+    // Grafico (Chart.js)
+    
+});
