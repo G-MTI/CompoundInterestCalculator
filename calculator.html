@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Compound Interest Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="card">
+            <h2>Compound Interest Calculator</h2>
+            <p class="small">Enter the values and click <strong>Calculate</strong>.</p>
+
+            <div class="controls row">
+
+                <button id="calcBtn">Calculate</button>
+
+                <div>
+                    <label>Initial principal</label><br>
+                    <input id="principal" type="number" step="any" />
+                </div>
+                
+            </div>
+
+            <div id="result" class="result"></div>
+
+            <canvas id="chart"></canvas>
+
+        </div>
+        <script src="calculate.js"></script>
+    </body>
+</html>
