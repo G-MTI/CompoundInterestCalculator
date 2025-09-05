@@ -3,7 +3,12 @@
 The Compound Interest Calculator is a small educational web app designed to help people understand how compound interest works over time.
 The project aims to make financial concepts easier to visualize by showing not only the final balance, but also a year-by-year breakdown and a growth chart.
 
-I created this calculator myself. First, I designed the interface using simple HTML and CSS, then I added the financial logic in JavaScript by implementing the standard compound interest formula. To make the project more engaging, I integrated a line chart using Chart.js (loaded via CDN).
+I created this calculator myself. First, I designed the interface using simple HTML and CSS, then I added the financial logic in JavaScript by implementing the standard compound interest formula:
+
+![equazione](https://latex.codecogs.com/svg.latex?A%3DP%281%2Br%2Fn%29%5E%7Bnt%7D%2BPMT%5Ccdot%5Cfrac%7B%281%2Br%2Fn%29%5E%7Bnt%7D-1%7D%7Br%2Fn%7D)
+
+
+To make the project more engaging, I integrated a line chart using Chart.js (loaded via CDN).
 This was one of the first times I built something with Chart.js.
 
 What I learned
